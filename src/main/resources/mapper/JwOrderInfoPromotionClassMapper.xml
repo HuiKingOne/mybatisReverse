@@ -1,0 +1,1254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rundejy.cloud.JwOrderInfoPromotionClassMapper">
+  <resultMap id="BaseResultMap" type="com.rundejy.cloud.entity.JwOrderInfoPromotionClass">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="student_name" jdbcType="VARCHAR" property="studentName" />
+    <result column="source_order_id" jdbcType="BIGINT" property="sourceOrderId" />
+    <result column="target_order_id" jdbcType="BIGINT" property="targetOrderId" />
+    <result column="source_product_id" jdbcType="INTEGER" property="sourceProductId" />
+    <result column="source_product_name" jdbcType="VARCHAR" property="sourceProductName" />
+    <result column="target_product_id" jdbcType="INTEGER" property="targetProductId" />
+    <result column="target_product_name" jdbcType="VARCHAR" property="targetProductName" />
+    <result column="source_subject_id" jdbcType="BIGINT" property="sourceSubjectId" />
+    <result column="source_subject_name" jdbcType="VARCHAR" property="sourceSubjectName" />
+    <result column="target_subject_id" jdbcType="BIGINT" property="targetSubjectId" />
+    <result column="target_subject_name" jdbcType="VARCHAR" property="targetSubjectName" />
+    <result column="course_id" jdbcType="BIGINT" property="courseId" />
+    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
+    <result column="course_num" jdbcType="INTEGER" property="courseNum" />
+    <result column="target_class_id" jdbcType="BIGINT" property="targetClassId" />
+    <result column="target_class_name" jdbcType="VARCHAR" property="targetClassName" />
+    <result column="old_course_id" jdbcType="INTEGER" property="oldCourseId" />
+    <result column="old_course_name" jdbcType="VARCHAR" property="oldCourseName" />
+    <result column="old_course_num" jdbcType="INTEGER" property="oldCourseNum" />
+    <result column="source_class_id" jdbcType="BIGINT" property="sourceClassId" />
+    <result column="source_class_name" jdbcType="VARCHAR" property="sourceClassName" />
+    <result column="enroll_id" jdbcType="BIGINT" property="enrollId" />
+    <result column="enroll_name" jdbcType="VARCHAR" property="enrollName" />
+    <result column="class_teacher_id" jdbcType="BIGINT" property="classTeacherId" />
+    <result column="class_teacher_name" jdbcType="VARCHAR" property="classTeacherName" />
+    <result column="campus_id" jdbcType="BIGINT" property="campusId" />
+    <result column="campus_name" jdbcType="VARCHAR" property="campusName" />
+    <result column="campus_id_current" jdbcType="BIGINT" property="campusIdCurrent" />
+    <result column="campus_name_current" jdbcType="VARCHAR" property="campusNameCurrent" />
+    <result column="coupon_id" jdbcType="BIGINT" property="couponId" />
+    <result column="coupon_name" jdbcType="VARCHAR" property="couponName" />
+    <result column="examine_staus" jdbcType="VARCHAR" property="examineStaus" />
+    <result column="supplementary_payment" jdbcType="INTEGER" property="supplementaryPayment" />
+    <result column="apply_reason" jdbcType="VARCHAR" property="applyReason" />
+    <result column="source_class_type_id" jdbcType="BIGINT" property="sourceClassTypeId" />
+    <result column="source_class_type_name" jdbcType="VARCHAR" property="sourceClassTypeName" />
+    <result column="target_class_type_id" jdbcType="BIGINT" property="targetClassTypeId" />
+    <result column="target_class_type_name" jdbcType="VARCHAR" property="targetClassTypeName" />
+    <result column="source_class_batch" jdbcType="VARCHAR" property="sourceClassBatch" />
+    <result column="target_class_batch" jdbcType="VARCHAR" property="targetClassBatch" />
+    <result column="deduct_price" jdbcType="DECIMAL" property="deductPrice" />
+    <result column="source_receive_price" jdbcType="DECIMAL" property="sourceReceivePrice" />
+    <result column="target_receive_price" jdbcType="DECIMAL" property="targetReceivePrice" />
+    <result column="source_real_price" jdbcType="DECIMAL" property="sourceRealPrice" />
+    <result column="target_real_price" jdbcType="DECIMAL" property="targetRealPrice" />
+    <result column="student_confirm_status" jdbcType="BIT" property="studentConfirmStatus" />
+    <result column="student_confirm_time" jdbcType="TIMESTAMP" property="studentConfirmTime" />
+    <result column="apply_staff_id" jdbcType="INTEGER" property="applyStaffId" />
+    <result column="apply_staff_name" jdbcType="VARCHAR" property="applyStaffName" />
+    <result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+    <result column="trialbatch_no" jdbcType="VARCHAR" property="trialbatchNo" />
+    <result column="trialbatch_status" jdbcType="BIT" property="trialbatchStatus" />
+    <result column="trialbatch_time" jdbcType="TIMESTAMP" property="trialbatchTime" />
+    <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.rundejy.cloud.entity.JwOrderInfoPromotionClass">
+    <result column="trialbatch_json" jdbcType="LONGVARCHAR" property="trialbatchJson" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, student_id, student_name, source_order_id, target_order_id, source_product_id, 
+    source_product_name, target_product_id, target_product_name, source_subject_id, source_subject_name, 
+    target_subject_id, target_subject_name, course_id, course_name, course_num, target_class_id, 
+    target_class_name, old_course_id, old_course_name, old_course_num, source_class_id, 
+    source_class_name, enroll_id, enroll_name, class_teacher_id, class_teacher_name, 
+    campus_id, campus_name, campus_id_current, campus_name_current, coupon_id, coupon_name, 
+    examine_staus, supplementary_payment, apply_reason, source_class_type_id, source_class_type_name, 
+    target_class_type_id, target_class_type_name, source_class_batch, target_class_batch, 
+    deduct_price, source_receive_price, target_receive_price, source_real_price, target_real_price, 
+    student_confirm_status, student_confirm_time, apply_staff_id, apply_staff_name, apply_time, 
+    trialbatch_no, trialbatch_status, trialbatch_time, finish_time, create_user, create_at, 
+    update_user, update_at
+  </sql>
+  <sql id="Blob_Column_List">
+    trialbatch_json
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.rundejy.cloud.entity.JwOrderInfoPromotionClassExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from jw_order_info_promotion_class
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.rundejy.cloud.entity.JwOrderInfoPromotionClassExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from jw_order_info_promotion_class
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from jw_order_info_promotion_class
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from jw_order_info_promotion_class
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rundejy.cloud.entity.JwOrderInfoPromotionClassExample">
+    delete from jw_order_info_promotion_class
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rundejy.cloud.entity.JwOrderInfoPromotionClass">
+    insert into jw_order_info_promotion_class (id, student_id, student_name, 
+      source_order_id, target_order_id, source_product_id, 
+      source_product_name, target_product_id, target_product_name, 
+      source_subject_id, source_subject_name, target_subject_id, 
+      target_subject_name, course_id, course_name, 
+      course_num, target_class_id, target_class_name, 
+      old_course_id, old_course_name, old_course_num, 
+      source_class_id, source_class_name, enroll_id, 
+      enroll_name, class_teacher_id, class_teacher_name, 
+      campus_id, campus_name, campus_id_current, 
+      campus_name_current, coupon_id, coupon_name, 
+      examine_staus, supplementary_payment, apply_reason, 
+      source_class_type_id, source_class_type_name, 
+      target_class_type_id, target_class_type_name, 
+      source_class_batch, target_class_batch, deduct_price, 
+      source_receive_price, target_receive_price, 
+      source_real_price, target_real_price, student_confirm_status, 
+      student_confirm_time, apply_staff_id, apply_staff_name, 
+      apply_time, trialbatch_no, trialbatch_status, 
+      trialbatch_time, finish_time, create_user, 
+      create_at, update_user, update_at, 
+      trialbatch_json)
+    values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR}, 
+      #{sourceOrderId,jdbcType=BIGINT}, #{targetOrderId,jdbcType=BIGINT}, #{sourceProductId,jdbcType=INTEGER}, 
+      #{sourceProductName,jdbcType=VARCHAR}, #{targetProductId,jdbcType=INTEGER}, #{targetProductName,jdbcType=VARCHAR}, 
+      #{sourceSubjectId,jdbcType=BIGINT}, #{sourceSubjectName,jdbcType=VARCHAR}, #{targetSubjectId,jdbcType=BIGINT}, 
+      #{targetSubjectName,jdbcType=VARCHAR}, #{courseId,jdbcType=BIGINT}, #{courseName,jdbcType=VARCHAR}, 
+      #{courseNum,jdbcType=INTEGER}, #{targetClassId,jdbcType=BIGINT}, #{targetClassName,jdbcType=VARCHAR}, 
+      #{oldCourseId,jdbcType=INTEGER}, #{oldCourseName,jdbcType=VARCHAR}, #{oldCourseNum,jdbcType=INTEGER}, 
+      #{sourceClassId,jdbcType=BIGINT}, #{sourceClassName,jdbcType=VARCHAR}, #{enrollId,jdbcType=BIGINT}, 
+      #{enrollName,jdbcType=VARCHAR}, #{classTeacherId,jdbcType=BIGINT}, #{classTeacherName,jdbcType=VARCHAR}, 
+      #{campusId,jdbcType=BIGINT}, #{campusName,jdbcType=VARCHAR}, #{campusIdCurrent,jdbcType=BIGINT}, 
+      #{campusNameCurrent,jdbcType=VARCHAR}, #{couponId,jdbcType=BIGINT}, #{couponName,jdbcType=VARCHAR}, 
+      #{examineStaus,jdbcType=VARCHAR}, #{supplementaryPayment,jdbcType=INTEGER}, #{applyReason,jdbcType=VARCHAR}, 
+      #{sourceClassTypeId,jdbcType=BIGINT}, #{sourceClassTypeName,jdbcType=VARCHAR}, 
+      #{targetClassTypeId,jdbcType=BIGINT}, #{targetClassTypeName,jdbcType=VARCHAR}, 
+      #{sourceClassBatch,jdbcType=VARCHAR}, #{targetClassBatch,jdbcType=VARCHAR}, #{deductPrice,jdbcType=DECIMAL}, 
+      #{sourceReceivePrice,jdbcType=DECIMAL}, #{targetReceivePrice,jdbcType=DECIMAL}, 
+      #{sourceRealPrice,jdbcType=DECIMAL}, #{targetRealPrice,jdbcType=DECIMAL}, #{studentConfirmStatus,jdbcType=BIT}, 
+      #{studentConfirmTime,jdbcType=TIMESTAMP}, #{applyStaffId,jdbcType=INTEGER}, #{applyStaffName,jdbcType=VARCHAR}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{trialbatchNo,jdbcType=VARCHAR}, #{trialbatchStatus,jdbcType=BIT}, 
+      #{trialbatchTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{createAt,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, #{updateAt,jdbcType=TIMESTAMP}, 
+      #{trialbatchJson,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rundejy.cloud.entity.JwOrderInfoPromotionClass">
+    insert into jw_order_info_promotion_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="studentId != null">
+        student_id,
+      </if>
+      <if test="studentName != null">
+        student_name,
+      </if>
+      <if test="sourceOrderId != null">
+        source_order_id,
+      </if>
+      <if test="targetOrderId != null">
+        target_order_id,
+      </if>
+      <if test="sourceProductId != null">
+        source_product_id,
+      </if>
+      <if test="sourceProductName != null">
+        source_product_name,
+      </if>
+      <if test="targetProductId != null">
+        target_product_id,
+      </if>
+      <if test="targetProductName != null">
+        target_product_name,
+      </if>
+      <if test="sourceSubjectId != null">
+        source_subject_id,
+      </if>
+      <if test="sourceSubjectName != null">
+        source_subject_name,
+      </if>
+      <if test="targetSubjectId != null">
+        target_subject_id,
+      </if>
+      <if test="targetSubjectName != null">
+        target_subject_name,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="courseName != null">
+        course_name,
+      </if>
+      <if test="courseNum != null">
+        course_num,
+      </if>
+      <if test="targetClassId != null">
+        target_class_id,
+      </if>
+      <if test="targetClassName != null">
+        target_class_name,
+      </if>
+      <if test="oldCourseId != null">
+        old_course_id,
+      </if>
+      <if test="oldCourseName != null">
+        old_course_name,
+      </if>
+      <if test="oldCourseNum != null">
+        old_course_num,
+      </if>
+      <if test="sourceClassId != null">
+        source_class_id,
+      </if>
+      <if test="sourceClassName != null">
+        source_class_name,
+      </if>
+      <if test="enrollId != null">
+        enroll_id,
+      </if>
+      <if test="enrollName != null">
+        enroll_name,
+      </if>
+      <if test="classTeacherId != null">
+        class_teacher_id,
+      </if>
+      <if test="classTeacherName != null">
+        class_teacher_name,
+      </if>
+      <if test="campusId != null">
+        campus_id,
+      </if>
+      <if test="campusName != null">
+        campus_name,
+      </if>
+      <if test="campusIdCurrent != null">
+        campus_id_current,
+      </if>
+      <if test="campusNameCurrent != null">
+        campus_name_current,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="couponName != null">
+        coupon_name,
+      </if>
+      <if test="examineStaus != null">
+        examine_staus,
+      </if>
+      <if test="supplementaryPayment != null">
+        supplementary_payment,
+      </if>
+      <if test="applyReason != null">
+        apply_reason,
+      </if>
+      <if test="sourceClassTypeId != null">
+        source_class_type_id,
+      </if>
+      <if test="sourceClassTypeName != null">
+        source_class_type_name,
+      </if>
+      <if test="targetClassTypeId != null">
+        target_class_type_id,
+      </if>
+      <if test="targetClassTypeName != null">
+        target_class_type_name,
+      </if>
+      <if test="sourceClassBatch != null">
+        source_class_batch,
+      </if>
+      <if test="targetClassBatch != null">
+        target_class_batch,
+      </if>
+      <if test="deductPrice != null">
+        deduct_price,
+      </if>
+      <if test="sourceReceivePrice != null">
+        source_receive_price,
+      </if>
+      <if test="targetReceivePrice != null">
+        target_receive_price,
+      </if>
+      <if test="sourceRealPrice != null">
+        source_real_price,
+      </if>
+      <if test="targetRealPrice != null">
+        target_real_price,
+      </if>
+      <if test="studentConfirmStatus != null">
+        student_confirm_status,
+      </if>
+      <if test="studentConfirmTime != null">
+        student_confirm_time,
+      </if>
+      <if test="applyStaffId != null">
+        apply_staff_id,
+      </if>
+      <if test="applyStaffName != null">
+        apply_staff_name,
+      </if>
+      <if test="applyTime != null">
+        apply_time,
+      </if>
+      <if test="trialbatchNo != null">
+        trialbatch_no,
+      </if>
+      <if test="trialbatchStatus != null">
+        trialbatch_status,
+      </if>
+      <if test="trialbatchTime != null">
+        trialbatch_time,
+      </if>
+      <if test="finishTime != null">
+        finish_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createAt != null">
+        create_at,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+      <if test="trialbatchJson != null">
+        trialbatch_json,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null">
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="studentName != null">
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOrderId != null">
+        #{sourceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="targetOrderId != null">
+        #{targetOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceProductId != null">
+        #{sourceProductId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceProductName != null">
+        #{sourceProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetProductId != null">
+        #{targetProductId,jdbcType=INTEGER},
+      </if>
+      <if test="targetProductName != null">
+        #{targetProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceSubjectId != null">
+        #{sourceSubjectId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceSubjectName != null">
+        #{sourceSubjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetSubjectId != null">
+        #{targetSubjectId,jdbcType=BIGINT},
+      </if>
+      <if test="targetSubjectName != null">
+        #{targetSubjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=BIGINT},
+      </if>
+      <if test="courseName != null">
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseNum != null">
+        #{courseNum,jdbcType=INTEGER},
+      </if>
+      <if test="targetClassId != null">
+        #{targetClassId,jdbcType=BIGINT},
+      </if>
+      <if test="targetClassName != null">
+        #{targetClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCourseId != null">
+        #{oldCourseId,jdbcType=INTEGER},
+      </if>
+      <if test="oldCourseName != null">
+        #{oldCourseName,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCourseNum != null">
+        #{oldCourseNum,jdbcType=INTEGER},
+      </if>
+      <if test="sourceClassId != null">
+        #{sourceClassId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceClassName != null">
+        #{sourceClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollId != null">
+        #{enrollId,jdbcType=BIGINT},
+      </if>
+      <if test="enrollName != null">
+        #{enrollName,jdbcType=VARCHAR},
+      </if>
+      <if test="classTeacherId != null">
+        #{classTeacherId,jdbcType=BIGINT},
+      </if>
+      <if test="classTeacherName != null">
+        #{classTeacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="campusId != null">
+        #{campusId,jdbcType=BIGINT},
+      </if>
+      <if test="campusName != null">
+        #{campusName,jdbcType=VARCHAR},
+      </if>
+      <if test="campusIdCurrent != null">
+        #{campusIdCurrent,jdbcType=BIGINT},
+      </if>
+      <if test="campusNameCurrent != null">
+        #{campusNameCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="examineStaus != null">
+        #{examineStaus,jdbcType=VARCHAR},
+      </if>
+      <if test="supplementaryPayment != null">
+        #{supplementaryPayment,jdbcType=INTEGER},
+      </if>
+      <if test="applyReason != null">
+        #{applyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceClassTypeId != null">
+        #{sourceClassTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceClassTypeName != null">
+        #{sourceClassTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetClassTypeId != null">
+        #{targetClassTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="targetClassTypeName != null">
+        #{targetClassTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceClassBatch != null">
+        #{sourceClassBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="targetClassBatch != null">
+        #{targetClassBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="deductPrice != null">
+        #{deductPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sourceReceivePrice != null">
+        #{sourceReceivePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="targetReceivePrice != null">
+        #{targetReceivePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sourceRealPrice != null">
+        #{sourceRealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="targetRealPrice != null">
+        #{targetRealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="studentConfirmStatus != null">
+        #{studentConfirmStatus,jdbcType=BIT},
+      </if>
+      <if test="studentConfirmTime != null">
+        #{studentConfirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyStaffId != null">
+        #{applyStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="applyStaffName != null">
+        #{applyStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null">
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trialbatchNo != null">
+        #{trialbatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trialbatchStatus != null">
+        #{trialbatchStatus,jdbcType=BIT},
+      </if>
+      <if test="trialbatchTime != null">
+        #{trialbatchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createAt != null">
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trialbatchJson != null">
+        #{trialbatchJson,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rundejy.cloud.entity.JwOrderInfoPromotionClassExample" resultType="java.lang.Long">
+    select count(*) from jw_order_info_promotion_class
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update jw_order_info_promotion_class
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentId != null">
+        student_id = #{record.studentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentName != null">
+        student_name = #{record.studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceOrderId != null">
+        source_order_id = #{record.sourceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.targetOrderId != null">
+        target_order_id = #{record.targetOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sourceProductId != null">
+        source_product_id = #{record.sourceProductId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourceProductName != null">
+        source_product_name = #{record.sourceProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetProductId != null">
+        target_product_id = #{record.targetProductId,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetProductName != null">
+        target_product_name = #{record.targetProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceSubjectId != null">
+        source_subject_id = #{record.sourceSubjectId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sourceSubjectName != null">
+        source_subject_name = #{record.sourceSubjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetSubjectId != null">
+        target_subject_id = #{record.targetSubjectId,jdbcType=BIGINT},
+      </if>
+      <if test="record.targetSubjectName != null">
+        target_subject_name = #{record.targetSubjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseId != null">
+        course_id = #{record.courseId,jdbcType=BIGINT},
+      </if>
+      <if test="record.courseName != null">
+        course_name = #{record.courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseNum != null">
+        course_num = #{record.courseNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.targetClassId != null">
+        target_class_id = #{record.targetClassId,jdbcType=BIGINT},
+      </if>
+      <if test="record.targetClassName != null">
+        target_class_name = #{record.targetClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldCourseId != null">
+        old_course_id = #{record.oldCourseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.oldCourseName != null">
+        old_course_name = #{record.oldCourseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldCourseNum != null">
+        old_course_num = #{record.oldCourseNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourceClassId != null">
+        source_class_id = #{record.sourceClassId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sourceClassName != null">
+        source_class_name = #{record.sourceClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enrollId != null">
+        enroll_id = #{record.enrollId,jdbcType=BIGINT},
+      </if>
+      <if test="record.enrollName != null">
+        enroll_name = #{record.enrollName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classTeacherId != null">
+        class_teacher_id = #{record.classTeacherId,jdbcType=BIGINT},
+      </if>
+      <if test="record.classTeacherName != null">
+        class_teacher_name = #{record.classTeacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.campusId != null">
+        campus_id = #{record.campusId,jdbcType=BIGINT},
+      </if>
+      <if test="record.campusName != null">
+        campus_name = #{record.campusName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.campusIdCurrent != null">
+        campus_id_current = #{record.campusIdCurrent,jdbcType=BIGINT},
+      </if>
+      <if test="record.campusNameCurrent != null">
+        campus_name_current = #{record.campusNameCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponId != null">
+        coupon_id = #{record.couponId,jdbcType=BIGINT},
+      </if>
+      <if test="record.couponName != null">
+        coupon_name = #{record.couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examineStaus != null">
+        examine_staus = #{record.examineStaus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplementaryPayment != null">
+        supplementary_payment = #{record.supplementaryPayment,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyReason != null">
+        apply_reason = #{record.applyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceClassTypeId != null">
+        source_class_type_id = #{record.sourceClassTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sourceClassTypeName != null">
+        source_class_type_name = #{record.sourceClassTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetClassTypeId != null">
+        target_class_type_id = #{record.targetClassTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.targetClassTypeName != null">
+        target_class_type_name = #{record.targetClassTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceClassBatch != null">
+        source_class_batch = #{record.sourceClassBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetClassBatch != null">
+        target_class_batch = #{record.targetClassBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deductPrice != null">
+        deduct_price = #{record.deductPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sourceReceivePrice != null">
+        source_receive_price = #{record.sourceReceivePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.targetReceivePrice != null">
+        target_receive_price = #{record.targetReceivePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sourceRealPrice != null">
+        source_real_price = #{record.sourceRealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.targetRealPrice != null">
+        target_real_price = #{record.targetRealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.studentConfirmStatus != null">
+        student_confirm_status = #{record.studentConfirmStatus,jdbcType=BIT},
+      </if>
+      <if test="record.studentConfirmTime != null">
+        student_confirm_time = #{record.studentConfirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyStaffId != null">
+        apply_staff_id = #{record.applyStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyStaffName != null">
+        apply_staff_name = #{record.applyStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyTime != null">
+        apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.trialbatchNo != null">
+        trialbatch_no = #{record.trialbatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trialbatchStatus != null">
+        trialbatch_status = #{record.trialbatchStatus,jdbcType=BIT},
+      </if>
+      <if test="record.trialbatchTime != null">
+        trialbatch_time = #{record.trialbatchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.finishTime != null">
+        finish_time = #{record.finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createAt != null">
+        create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateAt != null">
+        update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.trialbatchJson != null">
+        trialbatch_json = #{record.trialbatchJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update jw_order_info_promotion_class
+    set id = #{record.id,jdbcType=INTEGER},
+      student_id = #{record.studentId,jdbcType=INTEGER},
+      student_name = #{record.studentName,jdbcType=VARCHAR},
+      source_order_id = #{record.sourceOrderId,jdbcType=BIGINT},
+      target_order_id = #{record.targetOrderId,jdbcType=BIGINT},
+      source_product_id = #{record.sourceProductId,jdbcType=INTEGER},
+      source_product_name = #{record.sourceProductName,jdbcType=VARCHAR},
+      target_product_id = #{record.targetProductId,jdbcType=INTEGER},
+      target_product_name = #{record.targetProductName,jdbcType=VARCHAR},
+      source_subject_id = #{record.sourceSubjectId,jdbcType=BIGINT},
+      source_subject_name = #{record.sourceSubjectName,jdbcType=VARCHAR},
+      target_subject_id = #{record.targetSubjectId,jdbcType=BIGINT},
+      target_subject_name = #{record.targetSubjectName,jdbcType=VARCHAR},
+      course_id = #{record.courseId,jdbcType=BIGINT},
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      course_num = #{record.courseNum,jdbcType=INTEGER},
+      target_class_id = #{record.targetClassId,jdbcType=BIGINT},
+      target_class_name = #{record.targetClassName,jdbcType=VARCHAR},
+      old_course_id = #{record.oldCourseId,jdbcType=INTEGER},
+      old_course_name = #{record.oldCourseName,jdbcType=VARCHAR},
+      old_course_num = #{record.oldCourseNum,jdbcType=INTEGER},
+      source_class_id = #{record.sourceClassId,jdbcType=BIGINT},
+      source_class_name = #{record.sourceClassName,jdbcType=VARCHAR},
+      enroll_id = #{record.enrollId,jdbcType=BIGINT},
+      enroll_name = #{record.enrollName,jdbcType=VARCHAR},
+      class_teacher_id = #{record.classTeacherId,jdbcType=BIGINT},
+      class_teacher_name = #{record.classTeacherName,jdbcType=VARCHAR},
+      campus_id = #{record.campusId,jdbcType=BIGINT},
+      campus_name = #{record.campusName,jdbcType=VARCHAR},
+      campus_id_current = #{record.campusIdCurrent,jdbcType=BIGINT},
+      campus_name_current = #{record.campusNameCurrent,jdbcType=VARCHAR},
+      coupon_id = #{record.couponId,jdbcType=BIGINT},
+      coupon_name = #{record.couponName,jdbcType=VARCHAR},
+      examine_staus = #{record.examineStaus,jdbcType=VARCHAR},
+      supplementary_payment = #{record.supplementaryPayment,jdbcType=INTEGER},
+      apply_reason = #{record.applyReason,jdbcType=VARCHAR},
+      source_class_type_id = #{record.sourceClassTypeId,jdbcType=BIGINT},
+      source_class_type_name = #{record.sourceClassTypeName,jdbcType=VARCHAR},
+      target_class_type_id = #{record.targetClassTypeId,jdbcType=BIGINT},
+      target_class_type_name = #{record.targetClassTypeName,jdbcType=VARCHAR},
+      source_class_batch = #{record.sourceClassBatch,jdbcType=VARCHAR},
+      target_class_batch = #{record.targetClassBatch,jdbcType=VARCHAR},
+      deduct_price = #{record.deductPrice,jdbcType=DECIMAL},
+      source_receive_price = #{record.sourceReceivePrice,jdbcType=DECIMAL},
+      target_receive_price = #{record.targetReceivePrice,jdbcType=DECIMAL},
+      source_real_price = #{record.sourceRealPrice,jdbcType=DECIMAL},
+      target_real_price = #{record.targetRealPrice,jdbcType=DECIMAL},
+      student_confirm_status = #{record.studentConfirmStatus,jdbcType=BIT},
+      student_confirm_time = #{record.studentConfirmTime,jdbcType=TIMESTAMP},
+      apply_staff_id = #{record.applyStaffId,jdbcType=INTEGER},
+      apply_staff_name = #{record.applyStaffName,jdbcType=VARCHAR},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      trialbatch_no = #{record.trialbatchNo,jdbcType=VARCHAR},
+      trialbatch_status = #{record.trialbatchStatus,jdbcType=BIT},
+      trialbatch_time = #{record.trialbatchTime,jdbcType=TIMESTAMP},
+      finish_time = #{record.finishTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+      trialbatch_json = #{record.trialbatchJson,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update jw_order_info_promotion_class
+    set id = #{record.id,jdbcType=INTEGER},
+      student_id = #{record.studentId,jdbcType=INTEGER},
+      student_name = #{record.studentName,jdbcType=VARCHAR},
+      source_order_id = #{record.sourceOrderId,jdbcType=BIGINT},
+      target_order_id = #{record.targetOrderId,jdbcType=BIGINT},
+      source_product_id = #{record.sourceProductId,jdbcType=INTEGER},
+      source_product_name = #{record.sourceProductName,jdbcType=VARCHAR},
+      target_product_id = #{record.targetProductId,jdbcType=INTEGER},
+      target_product_name = #{record.targetProductName,jdbcType=VARCHAR},
+      source_subject_id = #{record.sourceSubjectId,jdbcType=BIGINT},
+      source_subject_name = #{record.sourceSubjectName,jdbcType=VARCHAR},
+      target_subject_id = #{record.targetSubjectId,jdbcType=BIGINT},
+      target_subject_name = #{record.targetSubjectName,jdbcType=VARCHAR},
+      course_id = #{record.courseId,jdbcType=BIGINT},
+      course_name = #{record.courseName,jdbcType=VARCHAR},
+      course_num = #{record.courseNum,jdbcType=INTEGER},
+      target_class_id = #{record.targetClassId,jdbcType=BIGINT},
+      target_class_name = #{record.targetClassName,jdbcType=VARCHAR},
+      old_course_id = #{record.oldCourseId,jdbcType=INTEGER},
+      old_course_name = #{record.oldCourseName,jdbcType=VARCHAR},
+      old_course_num = #{record.oldCourseNum,jdbcType=INTEGER},
+      source_class_id = #{record.sourceClassId,jdbcType=BIGINT},
+      source_class_name = #{record.sourceClassName,jdbcType=VARCHAR},
+      enroll_id = #{record.enrollId,jdbcType=BIGINT},
+      enroll_name = #{record.enrollName,jdbcType=VARCHAR},
+      class_teacher_id = #{record.classTeacherId,jdbcType=BIGINT},
+      class_teacher_name = #{record.classTeacherName,jdbcType=VARCHAR},
+      campus_id = #{record.campusId,jdbcType=BIGINT},
+      campus_name = #{record.campusName,jdbcType=VARCHAR},
+      campus_id_current = #{record.campusIdCurrent,jdbcType=BIGINT},
+      campus_name_current = #{record.campusNameCurrent,jdbcType=VARCHAR},
+      coupon_id = #{record.couponId,jdbcType=BIGINT},
+      coupon_name = #{record.couponName,jdbcType=VARCHAR},
+      examine_staus = #{record.examineStaus,jdbcType=VARCHAR},
+      supplementary_payment = #{record.supplementaryPayment,jdbcType=INTEGER},
+      apply_reason = #{record.applyReason,jdbcType=VARCHAR},
+      source_class_type_id = #{record.sourceClassTypeId,jdbcType=BIGINT},
+      source_class_type_name = #{record.sourceClassTypeName,jdbcType=VARCHAR},
+      target_class_type_id = #{record.targetClassTypeId,jdbcType=BIGINT},
+      target_class_type_name = #{record.targetClassTypeName,jdbcType=VARCHAR},
+      source_class_batch = #{record.sourceClassBatch,jdbcType=VARCHAR},
+      target_class_batch = #{record.targetClassBatch,jdbcType=VARCHAR},
+      deduct_price = #{record.deductPrice,jdbcType=DECIMAL},
+      source_receive_price = #{record.sourceReceivePrice,jdbcType=DECIMAL},
+      target_receive_price = #{record.targetReceivePrice,jdbcType=DECIMAL},
+      source_real_price = #{record.sourceRealPrice,jdbcType=DECIMAL},
+      target_real_price = #{record.targetRealPrice,jdbcType=DECIMAL},
+      student_confirm_status = #{record.studentConfirmStatus,jdbcType=BIT},
+      student_confirm_time = #{record.studentConfirmTime,jdbcType=TIMESTAMP},
+      apply_staff_id = #{record.applyStaffId,jdbcType=INTEGER},
+      apply_staff_name = #{record.applyStaffName,jdbcType=VARCHAR},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      trialbatch_no = #{record.trialbatchNo,jdbcType=VARCHAR},
+      trialbatch_status = #{record.trialbatchStatus,jdbcType=BIT},
+      trialbatch_time = #{record.trialbatchTime,jdbcType=TIMESTAMP},
+      finish_time = #{record.finishTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      update_at = #{record.updateAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rundejy.cloud.entity.JwOrderInfoPromotionClass">
+    update jw_order_info_promotion_class
+    <set>
+      <if test="studentId != null">
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="studentName != null">
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOrderId != null">
+        source_order_id = #{sourceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="targetOrderId != null">
+        target_order_id = #{targetOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceProductId != null">
+        source_product_id = #{sourceProductId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceProductName != null">
+        source_product_name = #{sourceProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetProductId != null">
+        target_product_id = #{targetProductId,jdbcType=INTEGER},
+      </if>
+      <if test="targetProductName != null">
+        target_product_name = #{targetProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceSubjectId != null">
+        source_subject_id = #{sourceSubjectId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceSubjectName != null">
+        source_subject_name = #{sourceSubjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetSubjectId != null">
+        target_subject_id = #{targetSubjectId,jdbcType=BIGINT},
+      </if>
+      <if test="targetSubjectName != null">
+        target_subject_name = #{targetSubjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null">
+        course_id = #{courseId,jdbcType=BIGINT},
+      </if>
+      <if test="courseName != null">
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseNum != null">
+        course_num = #{courseNum,jdbcType=INTEGER},
+      </if>
+      <if test="targetClassId != null">
+        target_class_id = #{targetClassId,jdbcType=BIGINT},
+      </if>
+      <if test="targetClassName != null">
+        target_class_name = #{targetClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCourseId != null">
+        old_course_id = #{oldCourseId,jdbcType=INTEGER},
+      </if>
+      <if test="oldCourseName != null">
+        old_course_name = #{oldCourseName,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCourseNum != null">
+        old_course_num = #{oldCourseNum,jdbcType=INTEGER},
+      </if>
+      <if test="sourceClassId != null">
+        source_class_id = #{sourceClassId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceClassName != null">
+        source_class_name = #{sourceClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollId != null">
+        enroll_id = #{enrollId,jdbcType=BIGINT},
+      </if>
+      <if test="enrollName != null">
+        enroll_name = #{enrollName,jdbcType=VARCHAR},
+      </if>
+      <if test="classTeacherId != null">
+        class_teacher_id = #{classTeacherId,jdbcType=BIGINT},
+      </if>
+      <if test="classTeacherName != null">
+        class_teacher_name = #{classTeacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="campusId != null">
+        campus_id = #{campusId,jdbcType=BIGINT},
+      </if>
+      <if test="campusName != null">
+        campus_name = #{campusName,jdbcType=VARCHAR},
+      </if>
+      <if test="campusIdCurrent != null">
+        campus_id_current = #{campusIdCurrent,jdbcType=BIGINT},
+      </if>
+      <if test="campusNameCurrent != null">
+        campus_name_current = #{campusNameCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=BIGINT},
+      </if>
+      <if test="couponName != null">
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="examineStaus != null">
+        examine_staus = #{examineStaus,jdbcType=VARCHAR},
+      </if>
+      <if test="supplementaryPayment != null">
+        supplementary_payment = #{supplementaryPayment,jdbcType=INTEGER},
+      </if>
+      <if test="applyReason != null">
+        apply_reason = #{applyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceClassTypeId != null">
+        source_class_type_id = #{sourceClassTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceClassTypeName != null">
+        source_class_type_name = #{sourceClassTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetClassTypeId != null">
+        target_class_type_id = #{targetClassTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="targetClassTypeName != null">
+        target_class_type_name = #{targetClassTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceClassBatch != null">
+        source_class_batch = #{sourceClassBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="targetClassBatch != null">
+        target_class_batch = #{targetClassBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="deductPrice != null">
+        deduct_price = #{deductPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sourceReceivePrice != null">
+        source_receive_price = #{sourceReceivePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="targetReceivePrice != null">
+        target_receive_price = #{targetReceivePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="sourceRealPrice != null">
+        source_real_price = #{sourceRealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="targetRealPrice != null">
+        target_real_price = #{targetRealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="studentConfirmStatus != null">
+        student_confirm_status = #{studentConfirmStatus,jdbcType=BIT},
+      </if>
+      <if test="studentConfirmTime != null">
+        student_confirm_time = #{studentConfirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyStaffId != null">
+        apply_staff_id = #{applyStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="applyStaffName != null">
+        apply_staff_name = #{applyStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null">
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trialbatchNo != null">
+        trialbatch_no = #{trialbatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trialbatchStatus != null">
+        trialbatch_status = #{trialbatchStatus,jdbcType=BIT},
+      </if>
+      <if test="trialbatchTime != null">
+        trialbatch_time = #{trialbatchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createAt != null">
+        create_at = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trialbatchJson != null">
+        trialbatch_json = #{trialbatchJson,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.rundejy.cloud.entity.JwOrderInfoPromotionClass">
+    update jw_order_info_promotion_class
+    set student_id = #{studentId,jdbcType=INTEGER},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      source_order_id = #{sourceOrderId,jdbcType=BIGINT},
+      target_order_id = #{targetOrderId,jdbcType=BIGINT},
+      source_product_id = #{sourceProductId,jdbcType=INTEGER},
+      source_product_name = #{sourceProductName,jdbcType=VARCHAR},
+      target_product_id = #{targetProductId,jdbcType=INTEGER},
+      target_product_name = #{targetProductName,jdbcType=VARCHAR},
+      source_subject_id = #{sourceSubjectId,jdbcType=BIGINT},
+      source_subject_name = #{sourceSubjectName,jdbcType=VARCHAR},
+      target_subject_id = #{targetSubjectId,jdbcType=BIGINT},
+      target_subject_name = #{targetSubjectName,jdbcType=VARCHAR},
+      course_id = #{courseId,jdbcType=BIGINT},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      course_num = #{courseNum,jdbcType=INTEGER},
+      target_class_id = #{targetClassId,jdbcType=BIGINT},
+      target_class_name = #{targetClassName,jdbcType=VARCHAR},
+      old_course_id = #{oldCourseId,jdbcType=INTEGER},
+      old_course_name = #{oldCourseName,jdbcType=VARCHAR},
+      old_course_num = #{oldCourseNum,jdbcType=INTEGER},
+      source_class_id = #{sourceClassId,jdbcType=BIGINT},
+      source_class_name = #{sourceClassName,jdbcType=VARCHAR},
+      enroll_id = #{enrollId,jdbcType=BIGINT},
+      enroll_name = #{enrollName,jdbcType=VARCHAR},
+      class_teacher_id = #{classTeacherId,jdbcType=BIGINT},
+      class_teacher_name = #{classTeacherName,jdbcType=VARCHAR},
+      campus_id = #{campusId,jdbcType=BIGINT},
+      campus_name = #{campusName,jdbcType=VARCHAR},
+      campus_id_current = #{campusIdCurrent,jdbcType=BIGINT},
+      campus_name_current = #{campusNameCurrent,jdbcType=VARCHAR},
+      coupon_id = #{couponId,jdbcType=BIGINT},
+      coupon_name = #{couponName,jdbcType=VARCHAR},
+      examine_staus = #{examineStaus,jdbcType=VARCHAR},
+      supplementary_payment = #{supplementaryPayment,jdbcType=INTEGER},
+      apply_reason = #{applyReason,jdbcType=VARCHAR},
+      source_class_type_id = #{sourceClassTypeId,jdbcType=BIGINT},
+      source_class_type_name = #{sourceClassTypeName,jdbcType=VARCHAR},
+      target_class_type_id = #{targetClassTypeId,jdbcType=BIGINT},
+      target_class_type_name = #{targetClassTypeName,jdbcType=VARCHAR},
+      source_class_batch = #{sourceClassBatch,jdbcType=VARCHAR},
+      target_class_batch = #{targetClassBatch,jdbcType=VARCHAR},
+      deduct_price = #{deductPrice,jdbcType=DECIMAL},
+      source_receive_price = #{sourceReceivePrice,jdbcType=DECIMAL},
+      target_receive_price = #{targetReceivePrice,jdbcType=DECIMAL},
+      source_real_price = #{sourceRealPrice,jdbcType=DECIMAL},
+      target_real_price = #{targetRealPrice,jdbcType=DECIMAL},
+      student_confirm_status = #{studentConfirmStatus,jdbcType=BIT},
+      student_confirm_time = #{studentConfirmTime,jdbcType=TIMESTAMP},
+      apply_staff_id = #{applyStaffId,jdbcType=INTEGER},
+      apply_staff_name = #{applyStaffName,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      trialbatch_no = #{trialbatchNo,jdbcType=VARCHAR},
+      trialbatch_status = #{trialbatchStatus,jdbcType=BIT},
+      trialbatch_time = #{trialbatchTime,jdbcType=TIMESTAMP},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_at = #{updateAt,jdbcType=TIMESTAMP},
+      trialbatch_json = #{trialbatchJson,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rundejy.cloud.entity.JwOrderInfoPromotionClass">
+    update jw_order_info_promotion_class
+    set student_id = #{studentId,jdbcType=INTEGER},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      source_order_id = #{sourceOrderId,jdbcType=BIGINT},
+      target_order_id = #{targetOrderId,jdbcType=BIGINT},
+      source_product_id = #{sourceProductId,jdbcType=INTEGER},
+      source_product_name = #{sourceProductName,jdbcType=VARCHAR},
+      target_product_id = #{targetProductId,jdbcType=INTEGER},
+      target_product_name = #{targetProductName,jdbcType=VARCHAR},
+      source_subject_id = #{sourceSubjectId,jdbcType=BIGINT},
+      source_subject_name = #{sourceSubjectName,jdbcType=VARCHAR},
+      target_subject_id = #{targetSubjectId,jdbcType=BIGINT},
+      target_subject_name = #{targetSubjectName,jdbcType=VARCHAR},
+      course_id = #{courseId,jdbcType=BIGINT},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      course_num = #{courseNum,jdbcType=INTEGER},
+      target_class_id = #{targetClassId,jdbcType=BIGINT},
+      target_class_name = #{targetClassName,jdbcType=VARCHAR},
+      old_course_id = #{oldCourseId,jdbcType=INTEGER},
+      old_course_name = #{oldCourseName,jdbcType=VARCHAR},
+      old_course_num = #{oldCourseNum,jdbcType=INTEGER},
+      source_class_id = #{sourceClassId,jdbcType=BIGINT},
+      source_class_name = #{sourceClassName,jdbcType=VARCHAR},
+      enroll_id = #{enrollId,jdbcType=BIGINT},
+      enroll_name = #{enrollName,jdbcType=VARCHAR},
+      class_teacher_id = #{classTeacherId,jdbcType=BIGINT},
+      class_teacher_name = #{classTeacherName,jdbcType=VARCHAR},
+      campus_id = #{campusId,jdbcType=BIGINT},
+      campus_name = #{campusName,jdbcType=VARCHAR},
+      campus_id_current = #{campusIdCurrent,jdbcType=BIGINT},
+      campus_name_current = #{campusNameCurrent,jdbcType=VARCHAR},
+      coupon_id = #{couponId,jdbcType=BIGINT},
+      coupon_name = #{couponName,jdbcType=VARCHAR},
+      examine_staus = #{examineStaus,jdbcType=VARCHAR},
+      supplementary_payment = #{supplementaryPayment,jdbcType=INTEGER},
+      apply_reason = #{applyReason,jdbcType=VARCHAR},
+      source_class_type_id = #{sourceClassTypeId,jdbcType=BIGINT},
+      source_class_type_name = #{sourceClassTypeName,jdbcType=VARCHAR},
+      target_class_type_id = #{targetClassTypeId,jdbcType=BIGINT},
+      target_class_type_name = #{targetClassTypeName,jdbcType=VARCHAR},
+      source_class_batch = #{sourceClassBatch,jdbcType=VARCHAR},
+      target_class_batch = #{targetClassBatch,jdbcType=VARCHAR},
+      deduct_price = #{deductPrice,jdbcType=DECIMAL},
+      source_receive_price = #{sourceReceivePrice,jdbcType=DECIMAL},
+      target_receive_price = #{targetReceivePrice,jdbcType=DECIMAL},
+      source_real_price = #{sourceRealPrice,jdbcType=DECIMAL},
+      target_real_price = #{targetRealPrice,jdbcType=DECIMAL},
+      student_confirm_status = #{studentConfirmStatus,jdbcType=BIT},
+      student_confirm_time = #{studentConfirmTime,jdbcType=TIMESTAMP},
+      apply_staff_id = #{applyStaffId,jdbcType=INTEGER},
+      apply_staff_name = #{applyStaffName,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      trialbatch_no = #{trialbatchNo,jdbcType=VARCHAR},
+      trialbatch_status = #{trialbatchStatus,jdbcType=BIT},
+      trialbatch_time = #{trialbatchTime,jdbcType=TIMESTAMP},
+      finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_at = #{createAt,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
